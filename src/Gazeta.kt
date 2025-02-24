@@ -1,31 +1,29 @@
-import java.time.LocalDate
-
 class Gazeta(
     var title: String,
     var number: Int,
-    var releaseDate: LocalDate
+    var releaseDate: String
 ) {
-    constructor() : this("Неизвестно", 0, LocalDate.now())
+    constructor() : this("Неизвестно", 0, "2023-10-01")
 
     fun displayInfo() {
-        println("Газета: $title, Номер: $number, Дата выпуска: ${releaseDate}")
+        println("Газета: $title, Номер: $number, Дата выпуска: $releaseDate")
     }
 
     fun isReleasedToday(): Boolean {
+        val today = "2023-10-01"
         return when {
-            releaseDate == LocalDate.now() -> true
+            releaseDate == today -> true
             else -> false
         }
     }
 
-    fun getNextReleaseDate(): LocalDate {
-        return releaseDate.plusDays(7)
+    fun getNextReleaseDate(): String {
+        return releaseDate
     }
 
     fun getReleaseStatus(): String {
         return when {
             isReleasedToday() -> "Газета выпущена сегодня."
-            releaseDate.isBefore(LocalDate.now()) -> "Газета выпущена раньше."
             else -> "Газета еще не выпущена."
         }
     }
